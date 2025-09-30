@@ -1,0 +1,101 @@
+Patient ID,NRIC_Last5,Full Patient Name,DOB (dd/mm/yyyy),Age (Years Months Days),Race,Gender,Height (m),Weight (kg),Date of Transplant Surgery (DOTS),Age at Transplant Surgery (y m d),Days Since Surgery,Immunosuppressant Used,Genotypes (CYP3A5),Genotypes (ABCB1 3435C>T),Genotypes (CYP3A4)
+RT1000,7911I,Tan Zhen Jia,10/7/1987,38y 1m 1d,Chinese,Male,1.75,50,8/7/2025,37y 11m 28d,34,Tacrolimus,*3/*3,*1/*2,*1/*1
+RT1001,3401P,Ng Yong Jun,7/7/1972,53y 1m 4d,Chinese,Male,1.62,97.7,30/5/2025,52y 10m 23d,73,Sirolimus,*3/*3,*1/*1,*22/*22
+RT1002,6872U,Lim Yong Wei,18/3/1985,40y 4m 24d,Chinese,Male,1.69,78.3,1/8/2025,40y 4m 14d,10,Tacrolimus,*3/*3,*1/*2,*1/*22
+RT1003,4705R,Hafiz Bin Ismail,5/9/1956,68y 11m 6d,Malay,Male,1.72,60.9,20/6/2025,68y 9m 15d,52,Tacrolimus,*3/*3,*1/*1,*1/*1
+RT1004,9777E,Chew Ying Liang,4/11/1982,42y 9m 7d,Chinese,Male,1.57,63.8,11/6/2025,42y 7m 7d,61,Tacrolimus,*3/*3,*1/*2,*1/*1
+RT1005,6928L,Sneha Pillai,18/11/2006,18y 8m 24d,Indian,Female,1.56,63.8,3/8/2025,18y 8m 16d,8,Tacrolimus,*1/*1,*1/*2,*1/*1
+RT1006,5069E,Koh Ying Liang,10/1/1959,66y 7m 1d,Chinese,Male,1.68,85.9,18/5/2025,66y 4m 8d,85,Tacrolimus,*3/*3,*1/*2,*1/*1
+RT1007,0900R,Lee Jia Kai,20/8/1977,47y 11m 22d,Chinese,Female,1.57,53,1/7/2025,47y 10m 11d,41,Cyclosporin,*1/*3,*1/*1,*1/*22
+RT1008,2679A,Lee Jun Ying,23/6/1973,52y 1m 19d,Chinese,Female,1.58,40,13/6/2025,51y 11m 21d,59,Tacrolimus,*3/*3,*1/*1,*1/*1
+RT1009,8904D,Vikram Reddy,30/5/1988,37y 2m 12d,Indian,Male,1.64,77.8,20/7/2025,37y 1m 20d,22,Tacrolimus,*3/*3,*1/*1,*1/*22
+RT1010,3197R,Wong Jia Jun,21/10/1991,33y 9m 21d,Chinese,Male,1.6,68.7,7/7/2025,33y 8m 16d,35,Tacrolimus,*3/*3,*1/*1,*1/*1
+RT1011,2314W,Lee Zhen Xiao,6/5/1974,51y 3m 5d,Chinese,Male,1.79,84.4,1/8/2025,51y 2m 26d,10,Tacrolimus,*3/*3,*1/*1,*22/*22
+RT1012,7595M,Farah Bin Hassan,17/7/1997,28y 0m 25d,Malay,Male,1.69,83.1,4/6/2025,27y 10m 18d,68,Tacrolimus,*3/*3,*1/*1,*1/*22
+RT1013,5065H,Goh Wei Chen,29/5/1985,40y 2m 13d,Chinese,Female,1.72,44.9,18/6/2025,40y 0m 20d,54,Sirolimus,*3/*3,*1/*2,*1/*1
+RT1014,2384P,Yap Jun Ying,7/2/1998,27y 6m 4d,Chinese,Female,1.62,73.9,12/6/2025,27y 4m 5d,60,Cyclosporin,*1/*3,*1/*1,*1/*1
+RT1015,2330K,Daniel Anderson,25/1/1963,62y 6m 17d,Others,Female,1.69,56.8,4/6/2025,62y 4m 10d,68,Cyclosporin,*3/*3,*1/*1,*1/*1
+RT1016,0564K,Koh Yong Yong,20/8/2005,19y 11m 22d,Chinese,Female,1.7,61.1,15/7/2025,19y 10m 25d,27,Everolimus,*3/*3,*1/*1,*1/*1
+RT1017,5156S,Farah Binte Hassan,14/4/1970,55y 3m 28d,Malay,Male,1.7,62.7,25/7/2025,55y 3m 11d,17,Tacrolimus,*1/*3,*1/*2,*1/*1
+RT1018,9115C,Goh Xiao Yong,21/2/1973,52y 5m 21d,Chinese,Male,1.67,73.2,22/7/2025,52y 5m 1d,20,Tacrolimus,*3/*3,*1/*2,*1/*1
+RT1019,7067A,Ananya Nair,24/5/1959,66y 2m 18d,Indian,Male,1.74,58.3,2/7/2025,66y 1m 8d,40,Everolimus,*3/*3,*1/*1,*1/*1
+RT1020,4024Z,Koh Kai Chen,9/5/2003,22y 3m 2d,Chinese,Female,1.59,74.6,13/6/2025,22y 1m 4d,59,Tacrolimus,*1/*3,*2/*2,*1/*1
+RT1021,2337Y,Ananya Reddy,7/4/1999,26y 4m 4d,Indian,Male,1.71,91.4,31/5/2025,26y 1m 24d,72,Tacrolimus,*3/*3,*1/*2,*1/*1
+RT1022,5843D,Tan Hui Kai,25/3/1979,46y 4m 17d,Chinese,Female,1.63,67.2,14/7/2025,46y 3m 19d,28,Tacrolimus,*3/*3,*2/*2,*1/*1
+RT1023,7491S,Loh Xiao Ying,10/5/1970,55y 3m 1d,Chinese,Female,1.55,53.9,3/8/2025,55y 2m 24d,8,Cyclosporin,*3/*3,*1/*2,*1/*1
+RT1024,9768L,Chua Hui Ying,4/11/1995,29y 9m 7d,Chinese,Female,1.62,61.9,16/5/2025,29y 6m 12d,87,Tacrolimus,*1/*3,*1/*2,*1/*1
+RT1025,7351H,Loh Yong Jia,3/1/1986,39y 7m 8d,Chinese,Female,1.66,67.8,22/7/2025,39y 6m 19d,20,Tacrolimus,*3/*3,*1/*2,*1/*22
+RT1026,6370D,Chew Chen Xiao,6/4/1991,34y 4m 5d,Chinese,Male,1.66,78.3,4/6/2025,34y 1m 29d,68,Tacrolimus,*3/*3,*1/*2,*1/*1
+RT1027,4272I,Ananya Iyer,10/9/1954,70y 11m 1d,Indian,Female,1.67,73.2,22/5/2025,70y 8m 12d,81,Cyclosporin,*3/*3,*1/*2,*1/*1
+RT1028,1170N,Haziq Binte Ahmad,15/3/1994,31y 4m 27d,Malay,Male,1.7,83.5,29/5/2025,31y 2m 14d,74,Tacrolimus,*3/*3,*1/*2,*1/*1
+RT1029,7739L,Goh Zhen Zhen,3/4/2003,22y 4m 8d,Chinese,Female,1.66,59.5,12/7/2025,22y 3m 9d,30,Tacrolimus,*3/*3,*2/*2,*1/*1
+RT1030,1888A,Loh Chen Zhen,15/12/1971,53y 7m 27d,Chinese,Female,1.66,58.4,20/7/2025,53y 7m 5d,22,Cyclosporin,*3/*3,*1/*1,*1/*1
+RT1031,3021J,Lim Liang Hui,8/9/1958,66y 11m 3d,Chinese,Male,1.75,69.5,26/7/2025,66y 10m 18d,16,Everolimus,*3/*3,*1/*2,*1/*1
+RT1032,5804K,Tan Zhen Chen,16/4/1982,43y 3m 26d,Chinese,Male,1.69,69.9,19/6/2025,43y 2m 3d,53,Cyclosporin,*3/*3,*1/*1,*1/*1
+RT1033,9313C,Chew Liang Yong,16/9/1971,53y 10m 26d,Chinese,Female,1.67,66.5,26/6/2025,53y 9m 10d,46,Cyclosporin,*3/*3,*2/*2,*1/*22
+RT1034,5397K,Lee Hui Jia,3/3/1987,38y 5m 8d,Chinese,Female,1.56,68.3,15/7/2025,38y 4m 12d,27,Tacrolimus,*3/*3,*1/*2,*22/*22
+RT1035,5610S,Goh Jia Xiao,26/6/1988,37y 1m 16d,Chinese,Male,1.71,66.1,4/8/2025,37y 1m 9d,7,Everolimus,*3/*3,*1/*2,*1/*22
+RT1036,3698O,Ng Ying Hui,16/3/1952,73y 4m 26d,Chinese,Male,1.66,80.6,22/6/2025,73y 3m 6d,50,Tacrolimus,*1/*3,*2/*2,*1/*1
+RT1037,1535C,Siti Binte Hassan,6/6/2005,20y 2m 5d,Malay,Male,1.7,77.8,7/7/2025,20y 1m 1d,35,Cyclosporin,*1/*3,*1/*1,*1/*1
+RT1038,3014G,Koh Jia Ying,19/4/1959,66y 3m 23d,Chinese,Female,1.59,72.8,30/7/2025,66y 3m 11d,12,Tacrolimus,*3/*3,*1/*2,*1/*1
+RT1039,0158G,Divya Pillai,24/11/1967,57y 8m 18d,Indian,Male,1.6,81.4,18/6/2025,57y 6m 25d,54,Cyclosporin,*1/*3,*1/*1,*1/*1
+RT1040,1707G,Yap Xiao Chen,4/3/1973,52y 5m 7d,Chinese,Male,1.79,80.8,21/5/2025,52y 2m 17d,82,Tacrolimus,*3/*3,*2/*2,*1/*1
+RT1041,4060J,Chua Chen Jia,27/1/1983,42y 6m 15d,Chinese,Male,1.64,82.3,25/7/2025,42y 5m 28d,17,Cyclosporin,*3/*3,*1/*2,*1/*1
+RT1042,6042W,Aisyah Binte Ahmad,31/1/1980,45y 6m 11d,Malay,Female,1.55,40,7/6/2025,45y 4m 7d,65,Everolimus,*3/*3,*2/*2,*1/*1
+RT1043,5443M,Teo Xiao Min,17/3/1972,53y 4m 25d,Chinese,Male,1.72,67.5,29/5/2025,53y 2m 12d,74,Tacrolimus,*3/*3,*1/*1,*1/*22
+RT1044,6776F,Ng Liang Ying,18/10/1976,48y 9m 24d,Chinese,Female,1.65,54.9,23/7/2025,48y 9m 5d,19,Tacrolimus,*3/*3,*1/*1,*1/*1
+RT1045,7085S,Koh Wei Yong,1/4/1968,57y 4m 10d,Chinese,Male,1.68,83.6,16/6/2025,57y 2m 15d,56,Sirolimus,*3/*3,*1/*2,*1/*1
+RT1046,4718S,Imran Bin Ismail,24/12/1965,59y 7m 18d,Malay,Male,1.77,65.4,1/8/2025,59y 7m 8d,10,Cyclosporin,*3/*3,*2/*2,*1/*1
+RT1047,4250O,Loh Jia Kai,27/3/1998,27y 4m 15d,Chinese,Female,1.65,63.3,30/5/2025,27y 2m 3d,73,Tacrolimus,*3/*3,*1/*1,*1/*1
+RT1048,7588F,Lim Hui Xiao,5/11/1999,25y 9m 6d,Chinese,Male,1.61,70.9,30/7/2025,25y 8m 25d,12,Tacrolimus,*3/*3,*1/*2,*1/*1
+RT1049,8690T,Nadia Bin Hassan,1/7/1959,66y 1m 10d,Malay,Female,1.57,56.3,20/7/2025,66y 0m 19d,22,Tacrolimus,*1/*3,*2/*2,*1/*1
+RT1050,5761U,Divya Subramaniam,18/5/1964,61y 2m 24d,Indian,Male,1.63,58.2,14/6/2025,61y 0m 27d,58,Tacrolimus,*3/*3,*2/*2,*22/*22
+RT1051,2799Y,Ng Ying Min,15/8/1973,51y 11m 27d,Chinese,Female,1.54,42.3,6/7/2025,51y 10m 21d,36,Tacrolimus,*3/*3,*2/*2,*1/*22
+RT1052,2984L,Lim Hui Zhen,8/9/1991,33y 11m 3d,Chinese,Male,1.67,82.8,24/7/2025,33y 10m 16d,18,Tacrolimus,*3/*3,*1/*1,*1/*22
+RT1053,8950N,Amir Binte Ahmad,5/4/1982,43y 4m 6d,Malay,Male,1.63,70.3,14/6/2025,43y 2m 9d,58,Tacrolimus,*1/*3,*1/*1,*1/*22
+RT1054,1421J,Lim Yong Jun,7/7/1955,70y 1m 4d,Chinese,Female,1.57,61.7,24/7/2025,70y 0m 17d,18,Tacrolimus,*1/*3,*1/*1,*1/*1
+RT1055,3369O,Ng Kai Wei,23/11/1972,52y 8m 19d,Chinese,Female,1.65,79.9,27/6/2025,52y 7m 4d,45,Tacrolimus,*3/*3,*1/*2,*1/*22
+RT1056,4503L,Wong Kai Ying,21/12/1981,43y 7m 21d,Chinese,Female,1.64,62.1,18/5/2025,43y 4m 27d,85,Tacrolimus,*3/*3,*1/*2,*1/*1
+RT1057,9755V,Goh Yong Jia,21/7/1998,27y 0m 21d,Chinese,Male,1.71,73.9,26/7/2025,27y 0m 5d,16,Tacrolimus,*3/*3,*1/*2,*1/*1
+RT1058,4403U,Lee Chen Xiao,9/7/1981,44y 1m 2d,Chinese,Female,1.52,67.7,20/5/2025,43y 10m 11d,83,Cyclosporin,*3/*3,*2/*2,*1/*1
+RT1059,7066J,Loh Jun Min,8/11/1963,61y 9m 3d,Chinese,Female,1.62,63.1,28/5/2025,61y 6m 20d,75,Cyclosporin,*3/*3,*1/*2,*1/*1
+RT1060,1753S,Teo Liang Min,14/4/2001,24y 3m 28d,Chinese,Female,1.62,57.1,22/5/2025,24y 1m 8d,81,Everolimus,*3/*3,*2/*2,*1/*1
+RT1061,8112Z,Goh Liang Zhen,4/4/1956,69y 4m 7d,Chinese,Male,1.74,68.5,22/5/2025,69y 1m 18d,81,Cyclosporin,*3/*3,*2/*2,*1/*1
+RT1062,4659E,Sneha Pillai,8/11/1957,67y 9m 3d,Indian,Male,1.81,83,30/6/2025,67y 7m 22d,42,Tacrolimus,*3/*3,*2/*2,*1/*22
+RT1063,6331J,Loh Kai Chen,29/10/1981,43y 9m 13d,Chinese,Male,1.67,72.5,13/5/2025,43y 6m 14d,90,Sirolimus,*3/*3,*1/*2,*1/*1
+RT1064,9194Q,Teo Liang Hui,9/5/1975,50y 3m 2d,Chinese,Female,1.52,50.7,11/6/2025,50y 1m 2d,61,Tacrolimus,*3/*3,*1/*2,*1/*1
+RT1065,0498I,Arjun Iyer,4/10/2006,18y 10m 7d,Indian,Male,1.66,63.8,2/6/2025,18y 7m 29d,70,Everolimus,*3/*3,*1/*1,*1/*1
+RT1066,5819X,Ng Chen Min,20/4/1976,49y 3m 22d,Chinese,Male,1.62,91.6,29/6/2025,49y 2m 9d,43,Sirolimus,*3/*3,*2/*2,*1/*1
+RT1067,5329Y,Chew Ying Hui,24/11/1965,59y 8m 18d,Chinese,Male,1.75,85.5,4/6/2025,59y 6m 11d,68,Tacrolimus,*1/*1,*1/*2,*1/*22
+RT1068,3072F,Yap Kai Kai,24/12/1991,33y 7m 18d,Chinese,Female,1.61,53.5,15/7/2025,33y 6m 21d,27,Cyclosporin,*3/*3,*1/*2,*1/*1
+RT1069,3002T,Wong Zhen Zhen,5/12/1992,32y 8m 6d,Chinese,Male,1.69,111.1,18/6/2025,32y 6m 13d,54,Tacrolimus,*3/*3,*1/*1,*22/*22
+RT1070,7944B,Koh Ying Min,3/4/1975,50y 4m 8d,Chinese,Female,1.56,60.7,4/8/2025,50y 4m 1d,7,Tacrolimus,*3/*3,*1/*1,*1/*22
+RT1071,3159W,Ng Zhen Jia,22/2/1976,49y 5m 20d,Chinese,Male,1.69,66.8,27/7/2025,49y 5m 5d,15,Tacrolimus,*1/*3,*1/*1,*1/*1
+RT1072,6300Q,Chua Kai Hui,7/8/1972,53y 0m 4d,Chinese,Male,1.69,58.7,12/6/2025,52y 10m 5d,60,Cyclosporin,*3/*3,*1/*1,*1/*1
+RT1073,1197M,Tan Chen Jia,4/4/1961,64y 4m 7d,Chinese,Male,1.65,58.5,28/6/2025,64y 2m 24d,44,Tacrolimus,*1/*3,*2/*2,*1/*22
+RT1074,3672I,Nurul Bin Ismail,5/12/1960,64y 8m 6d,Malay,Female,1.58,55.6,12/6/2025,64y 6m 7d,60,Tacrolimus,*3/*3,*1/*2,*1/*22
+RT1075,3491L,Loh Liang Wei,9/8/1973,52y 0m 2d,Chinese,Male,1.68,90.3,16/5/2025,51y 9m 7d,87,Tacrolimus,*3/*3,*1/*1,*1/*22
+RT1076,6254N,Yap Ying Zhen,26/2/1962,63y 5m 16d,Chinese,Female,1.62,69.5,31/5/2025,63y 3m 5d,72,Everolimus,*3/*3,*1/*1,*1/*22
+RT1077,5733J,Ng Zhen Xiao,14/2/2001,24y 5m 28d,Chinese,Male,1.73,62.5,13/7/2025,24y 4m 29d,29,Tacrolimus,*3/*3,*1/*1,*1/*1
+RT1078,7600H,Lee Hui Chen,26/12/1956,68y 7m 16d,Chinese,Female,1.62,67.3,15/6/2025,68y 5m 20d,57,Tacrolimus,*3/*3,*1/*2,*1/*1
+RT1079,6238N,Farah Binte Ahmad,21/3/1961,64y 4m 21d,Malay,Male,1.64,81,25/5/2025,64y 2m 4d,78,Cyclosporin,*3/*3,*1/*1,*1/*1
+RT1080,2161S,Ng Kai Hui,6/2/1996,29y 6m 5d,Chinese,Female,1.63,59.6,1/6/2025,29y 3m 26d,71,Tacrolimus,*3/*3,*1/*1,*1/*22
+RT1081,9166U,Lim Ying Zhen,15/4/1978,47y 3m 27d,Chinese,Female,1.61,88.9,23/5/2025,47y 1m 8d,80,Tacrolimus,*3/*3,*1/*2,*1/*1
+RT1082,6365N,Vikram Pillai,26/10/1983,41y 9m 16d,Indian,Female,1.56,71.7,16/5/2025,41y 6m 20d,87,Tacrolimus,*1/*3,*1/*1,*1/*1
+RT1083,8085K,Teo Xiao Chen,16/3/1965,60y 4m 26d,Chinese,Male,1.71,55.6,28/5/2025,60y 2m 12d,75,Sirolimus,*3/*3,*1/*1,*1/*1
+RT1084,1784Q,Yap Ying Yong,18/5/2003,22y 2m 24d,Chinese,Female,1.53,64.3,12/7/2025,22y 1m 24d,30,Tacrolimus,*1/*3,*1/*2,*1/*1
+RT1085,6071L,Chew Yong Jun,20/6/1995,30y 1m 22d,Chinese,Male,1.75,72.6,5/6/2025,29y 11m 16d,67,Tacrolimus,*3/*3,*1/*2,*1/*1
+RT1086,8942S,Ng Jia Min,21/3/1962,63y 4m 21d,Chinese,Female,1.57,68.1,17/5/2025,63y 1m 26d,86,Cyclosporin,*1/*3,*1/*1,*1/*22
+RT1087,5487A,Teo Ying Chen,2/4/1994,31y 4m 9d,Chinese,Female,1.55,64.6,27/7/2025,31y 3m 25d,15,Tacrolimus,*1/*1,*2/*2,*1/*1
+RT1088,9118M,Teo Ying Hui,30/8/1989,35y 11m 12d,Chinese,Male,1.56,69.7,9/6/2025,35y 9m 10d,63,Sirolimus,*1/*3,*1/*2,*1/*22
+RT1089,5916D,Ng Min Wei,20/8/1998,26y 11m 22d,Chinese,Male,1.68,83.3,13/6/2025,26y 9m 24d,59,Cyclosporin,*3/*3,*1/*2,*1/*1
+RT1090,2568V,Loh Chen Yong,8/11/1955,69y 9m 3d,Chinese,Male,1.66,75.7,12/7/2025,69y 8m 4d,30,Tacrolimus,*3/*3,*1/*2,*1/*1
+RT1091,7008C,Yap Wei Zhen,31/12/1951,73y 7m 11d,Chinese,Female,1.56,68.8,25/6/2025,73y 5m 25d,47,Tacrolimus,*3/*3,*1/*1,*1/*22
+RT1092,5289H,Ananya Menon,17/10/1978,46y 9m 25d,Indian,Female,1.56,67.6,31/7/2025,46y 9m 14d,11,Tacrolimus,*1/*3,*2/*2,*1/*22
+RT1093,4493E,Goh Zhen Jun,23/6/1955,70y 1m 19d,Chinese,Female,1.58,79.1,15/5/2025,69y 10m 22d,88,Tacrolimus,*3/*3,*1/*2,*1/*1
+RT1094,7795X,Yap Jia Zhen,28/11/1983,41y 8m 14d,Chinese,Male,1.67,50,22/5/2025,41y 5m 24d,81,Tacrolimus,*3/*3,*1/*1,*1/*22
+RT1095,5932F,Wong Liang Xiao,31/3/1956,69y 4m 11d,Chinese,Male,1.87,67.2,9/7/2025,69y 3m 9d,33,Tacrolimus,*3/*3,*1/*2,*1/*1
+RT1096,4936X,Wong Liang Liang,1/2/1951,74y 6m 10d,Chinese,Male,1.71,78.7,1/6/2025,74y 4m 0d,71,Tacrolimus,*3/*3,*1/*1,*1/*1
+RT1097,5381G,Teo Chen Chen,19/6/1961,64y 1m 23d,Chinese,Female,1.56,66,24/5/2025,63y 11m 5d,79,Tacrolimus,*3/*3,*1/*2,*1/*1
+RT1098,1317D,Lim Hui Chen,26/4/1964,61y 3m 16d,Chinese,Female,1.62,63.3,14/5/2025,61y 0m 18d,89,Tacrolimus,*3/*3,*1/*1,*1/*1
+RT1099,8871K,Vikram Reddy,16/9/1991,33y 10m 26d,Indian,Male,1.81,81.4,24/6/2025,33y 9m 8d,48,Tacrolimus,*1/*3,*1/*1,*1/*1
