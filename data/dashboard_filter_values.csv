@@ -1,0 +1,13 @@
+Filter,Value
+drugs,Cyclosporin
+drugs,Everolimus
+drugs,Sirolimus
+drugs,Tacrolimus
+cyp3a5,*1/*1
+cyp3a5,*1/*3
+cyp3a5,*3/*3
+abcb1,CC
+abcb1,CT
+abcb1,TT
+gender,Female
+gender,Male

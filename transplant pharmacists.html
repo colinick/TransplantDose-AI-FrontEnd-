@@ -1,0 +1,273 @@
+<!doctype html>
+<html class="no-js" lang="zxx">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <title>Staff Login for Transplant Pharmacists | Northshore General Hospital</title>
+  <link rel="icon" type="image/png" href="assets/img/logo/TransplantDose AI Logo.jpg">
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="manifest" href="site.webmanifest">
+
+  <!-- CSS here -->
+  <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+  <link rel="stylesheet" href="assets/css/owl.carousel.min.css">
+  <link rel="stylesheet" href="assets/css/slicknav.css">
+  <link rel="stylesheet" href="assets/css/flaticon.css">
+  <link rel="stylesheet" href="assets/css/gijgo.css">
+  <link rel="stylesheet" href="assets/css/animate.min.css">
+  <link rel="stylesheet" href="assets/css/animated-headline.css">
+  <link rel="stylesheet" href="assets/css/magnific-popup.css">
+  <link rel="stylesheet" href="assets/css/fontawesome-all.min.css">
+  <link rel="stylesheet" href="assets/css/themify-icons.css">
+  <link rel="stylesheet" href="assets/css/slick.css">
+  <link rel="stylesheet" href="assets/css/nice-select.css">
+  <link rel="stylesheet" href="assets/css/style.css">
+  <style>
+    .single-team { display:flex; flex-direction:column; height:100%; }
+    .single-team .team-caption { display:flex; flex-direction:column; flex:1; }
+    .single-team .login-btn { margin-top:auto; }
+  </style>
+</head>
+<body>
+  <!-- Preloader Start -->
+  <div id="preloader-active">
+    <div class="preloader d-flex align-items-center justify-content-center">
+      <div class="preloader-inner position-relative">
+        <div class="preloader-circle"></div>
+        <div class="preloader-img pere-text">
+          <img src="assets/img/logo/loder.png" alt="">
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Preloader End -->
+
+  <!-- Header placeholder -->
+  <div id="site-header"></div>
+
+  <main>
+    <!-- Hero Start -->
+    <div class="slider-area2">
+      <div class="slider-height2 d-flex align-items-center">
+        <div class="container">
+          <div class="row">
+            <div class="col-xl-12">
+              <div class="hero-cap hero-cap2 text-center">
+                <h2>Staff Login for Transplant Pharmacists</h2>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Hero End -->
+
+    <!-- Team Start -->
+    <div class="team-area section-padding30">
+      <div class="container">
+        <!-- Section Title -->
+        <div class="row justify-content-center">
+          <div class="col-lg-8">
+            <div class="section-tittle text-center mb-60">
+              <span>Transplant Pharmacists</span>
+              <h2>Our Multi-Disciplinary Experts</h2>
+              <p class="mt-2">Select your name to sign in.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Cards -->
+        <div class="row" id="pharmacistGrid"></div>
+      </div>
+    </div>
+    <!-- Team End -->
+
+    <!-- Login modal -->
+    <div id="loginModal" class="mfp-hide white-popup-block" style="max-width:520px;margin:0 auto;padding:20px;background:#fff;border-radius:12px;">
+      <h3 class="mb-3">Staff Login</h3>
+      <form id="staffLoginForm" novalidate>
+        <div class="form-group mb-3">
+          <label>Role</label>
+          <input id="roleSelect" class="form-control" type="text" value="Transplant Pharmacists" readonly>
+        </div>
+        <div class="form-group mb-3">
+          <label>Display Name</label>
+          <input id="displayName" class="form-control" type="text" required readonly>
+        </div>
+        <div class="form-group mb-3">
+          <label>Email</label>
+          <input id="staffEmail" class="form-control" type="email" placeholder="name@example.com" required>
+        </div>
+        <div class="form-group mb-4">
+          <label>Password</label>
+          <input id="staffPassword" class="form-control" type="password" minlength="6" placeholder="Enter your password" required>
+        </div>
+        <button type="submit" class="btn btn-primary w-100">Sign in</button>
+        <div class="text-muted mt-2" style="font-size:0.9rem;">(Demo: email &amp; password must match the assigned credentials.)</div>
+      </form>
+    </div>
+  </main>
+
+  <!-- Footer placeholder -->
+  <div id="site-footer"></div>
+
+  <!-- Scroll Up -->
+  <div id="back-top"><a title="Go to Top" href="#"><i class="fas fa-level-up-alt"></i></a></div>
+
+  <!-- JS here -->
+  <script src="./assets/js/vendor/modernizr-3.5.0.min.js"></script>
+  <script src="./assets/js/vendor/jquery-1.12.4.min.js"></script>
+  <script src="./assets/js/popper.min.js"></script>
+  <script src="./assets/js/bootstrap.min.js"></script>
+  <script src="./assets/js/jquery.slicknav.min.js"></script>
+  <script src="./assets/js/owl.carousel.min.js"></script>
+  <script src="./assets/js/slick.min.js"></script>
+  <script src="./assets/js/wow.min.js"></script>
+  <script src="./assets/js/animated.headline.js"></script>
+  <script src="./assets/js/jquery.magnific-popup.js"></script>
+  <script src="./assets/js/gijgo.min.js"></script>
+  <script src="./assets/js/jquery.nice-select.min.js"></script>
+  <script src="./assets/js/jquery.sticky.js"></script>
+  <script src="./assets/js/jquery.counterup.min.js"></script>
+  <script src="./assets/js/waypoints.min.js"></script>
+  <script src="./assets/js/jquery.countdown.min.js"></script>
+  <script src="./assets/js/contact.js"></script>
+  <script src="./assets/js/jquery.form.js"></script>
+  <script src="./assets/js/jquery.validate.min.js"></script>
+  <script src="./assets/js/mail-script.js"></script>
+  <script src="./assets/js/jquery.ajaxchimp.min.js"></script>
+  <script src="./assets/js/plugins.js"></script>
+  <script src="./assets/js/main.js"></script>
+
+  <script>
+  // ---- NO auto-redirect on this role page ----
+
+  // DATA: Transplant Pharmacists
+  const IMG_BASE = "assets/img/Transplant Pharmacists";
+  const PHARMACISTS = [
+    {
+      title: "Dr",
+      name: "Constance Teo Ee Hoon",
+      qualifications: "BPharm (Hons), PharmD, BCPS, FAMS",
+      position: "Principal Pharmacist, Transplant Pharmacy Services",
+      department: "Department of Pharmacy, Northshore General Hospital",
+      image: "Constance_Teo_Ee_Hoon.jpg",
+      email: "constance.teo@ngh.com.sg",
+      password: "DemoPass!Teo2025"
+    },
+    {
+      title: "Dr",
+      name: "Yap Ching Ting",
+      qualifications: "BPharm (Hons), PharmD, BCPS",
+      position: "Senior Clinical Pharmacist, Transplant Pharmacy Services",
+      department: "Department of Pharmacy, Northshore General Hospital",
+      image: "Yap_Ching_Ting.jpg",
+      email: "chingting.yap@ngh.com.sg",
+      password: "DemoPass!Yap2025"
+    },
+    {
+      title: "Dr",
+      name: "Yeo Yan Ting",
+      qualifications: "BPharm (Hons), MClinPharm, BCPS",
+      position: "Clinical Pharmacist, Transplant Pharmacy Services",
+      department: "Department of Pharmacy, Northshore General Hospital",
+      image: "Yeo_Yan_Ting.jpg",
+      email: "yanting.yeo@ngh.com.sg",
+      password: "DemoPass!Yeo2025"
+    }
+  ];
+
+  // Render cards
+  function renderCards() {
+    const $grid = $('#pharmacistGrid').empty();
+    PHARMACISTS.forEach((p, idx) => {
+      const src = encodeURI(`${IMG_BASE}/${p.image}`);
+      const card = $(`
+        <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 d-flex">
+          <div class="single-team mb-30 d-flex flex-column" data-index="${idx}" style="cursor:pointer; width:100%;">
+            <div class="team-img">
+              <img src="${src}" alt="${p.name}">
+            </div>
+            <div class="team-caption d-flex flex-column" style="flex:1;">
+              <h3><a href="#">${p.title ? p.title + ' ' : ''}${p.name}</a></h3>
+              <span>${p.position || ''}</span>
+              <div class="mt-2" style="font-size:1.5rem;line-height:1.45;">
+                <div><strong>Qualifications:</strong> ${p.qualifications}</div>
+                <div><strong>Department:</strong> ${p.department}</div>
+              </div>
+              <button class="btn btn-sm btn-primary mt-auto w-100 login-btn">Login</button>
+            </div>
+          </div>
+        </div>
+      `);
+      card.find('img').on('error', function(){ console.warn('Missing image:', this.src); });
+      card.on('click', '.login-btn, .single-team', function(e){
+        e.preventDefault(); e.stopPropagation(); openLoginFor(idx);
+      });
+      $grid.append(card);
+    });
+  }
+
+  function openLoginFor(idx) {
+    const p = PHARMACISTS[idx];
+    $('#displayName').val(p.name);
+    $('#loginModal #staffEmail').val(p.email);   // prefill email
+    $('#loginModal #staffPassword').val('');     // clear password
+    $.magnificPopup.open({ items: { src: '#loginModal' }, type: 'inline', closeBtnInside: true });
+    $('#loginModal').data('person-index', idx);
+  }
+
+  // Mock authentication
+  $('#staffLoginForm').on('submit', function(e){
+    e.preventDefault();
+    const idx = $('#loginModal').data('person-index');
+    if (idx == null) return alert('Please select a staff member.');
+
+    const p = PHARMACISTS[idx];
+    const email = $('#loginModal #staffEmail').val().trim().toLowerCase();
+    const password = $('#loginModal #staffPassword').val();
+    if (!email || !password) return alert('Please enter email and password.');
+
+    const ok = (email === p.email.toLowerCase()) && (password === p.password);
+    if (!ok) return alert('Invalid email or password.');
+
+    const auth = {
+      title: p.title || '',
+      displayName: p.name,
+      qualifications: p.qualifications || '',
+      position: p.position || '',
+      department: p.department || '',
+      image: p.image || '',
+      email: p.email,
+      role: 'Transplant Pharmacist',
+      userId: `mock-pharm-${idx}`
+    };
+    sessionStorage.setItem('auth', JSON.stringify(auth));
+
+    $.magnificPopup.close();
+
+    const next = new URLSearchParams(location.search).get('next');
+    location.href = next || 'patient-lookup.html';
+  });
+
+  // Render on ready
+  $(function(){ renderCards(); });
+
+  // Inject header & footer partials
+  async function inject(id, url) {
+    try {
+      const html = await fetch(url, { cache: 'no-cache' }).then(r => r.text());
+      document.getElementById(id).innerHTML = html;
+    } catch (e) { console.warn('Failed to load', url, e); }
+  }
+  Promise.all([
+    inject('site-header', 'components/header.html'),
+    inject('site-footer', 'components/footer.html')
+  ]).then(() => {
+    const y = document.getElementById('tdai-year');
+    if (y) y.textContent = new Date().getFullYear();
+  });
+  </script>
+</body>
+</html>

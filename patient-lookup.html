@@ -1,0 +1,175 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>TransplantDose AI — Patient Lookup</title>
+  <link rel="icon" type="image/png" href="assets/img/logo/TransplantDose AI Logo.jpg">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- You can replace with your own CSS bundle -->
+  <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+  <style>
+    body { font-family: system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif; }
+    .nav-link { font-size: 1.1rem; }
+    .page-wrap { max-width: 1100px; margin: 2rem auto; padding: 0 1rem; }
+    .card { border-radius: 14px; box-shadow: 0 10px 25px rgba(0,0,0,0.06); }
+    .result-card:hover { transform: translateY(-2px); transition: all .12s; }
+    .muted { color:#6c757d; }
+    .search-row { gap: .75rem; }
+    .pill { display:inline-block; padding:.15rem .5rem; border-radius:999px; background:#eef3ff; color:#193b8a; font-size:.85rem; }
+  </style>
+  <!-- Vendor libs -->
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/papaparse@5.4.1/papaparse.min.js"></script>
+  <!-- Shared helpers -->
+  <script src="assets/js/dataLoader.js"></script>
+</head>
+<body>
+
+  <!-- Simple top nav -->
+  <nav class="navbar navbar-expand-lg bg-white border-bottom sticky-top">
+    <div class="container">
+      <a class="navbar-brand fw-semibold" href="index.html">TransplantDose AI</a>
+      <div class="collapse navbar-collapse show">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item"><a class="nav-link active" href="patient-lookup.html">Patient Lookup</a></li>
+          <li class="nav-item"><a class="nav-link" href="predicted-dosage-trend.html">Dosage & Trends</a></li>
+          <li class="nav-item"><a class="nav-link" href="cohort-dashboard.html">Cohort Dashboard</a></li>
+          <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+          <li class="nav-item"><a class="nav-link" href="index.html">Logout</a></li>
+        </ul>
+        
+      </div>
+    </div>
+  </nav>
+
+  <main class="page-wrap">
+    <h1 class="h3 mb-3">Patient Lookup</h1>
+    <p class="muted">Search by Patient ID, Name, NRIC (last 5), or Date of Birth.</p>
+
+    <div class="d-flex flex-wrap align-items-end search-row mb-3">
+      <div>
+        <label class="form-label">Patient ID / Name / NRIC Last 5</label>
+        <input id="q" class="form-control" placeholder="e.g., RT1004 or Tan or 9777E">
+      </div>
+      <div>
+        <label class="form-label">Date of Birth</label>
+        <input id="dob" class="form-control" placeholder="dd/mm/yyyy">
+      </div>
+      <div>
+        <button id="btnSearch" class="btn btn-primary">Search</button>
+      </div>
+    </div>
+
+    <div id="results" class="row g-3"></div>
+  </main>
+  
+  <script>
+    const PTS = "assets/data/Patients_100_withNRIC.csv";
+
+  async function searchPatients() {
+    const data = await TX.loadCSV(PTS);
+    const q = ($("#q").val() || "").toLowerCase().trim();
+    const dob = ($("#dob").val() || "").trim();
+
+    const out = data.filter(r => {
+      const id = String(r["Patient ID"] || "").toLowerCase();
+      const name = String(r["Full Patient Name"] || "").toLowerCase();
+      const nric5 = String(r["NRIC_Last5"] || "").toLowerCase();
+      const dobStr = String(r["DOB (dd/mm/yyyy)"] || "").trim();
+
+      const textMatch = !q || id.includes(q) || name.includes(q) || nric5.includes(q);
+      const dobMatch = !dob || dobStr === dob;
+      return textMatch && dobMatch;
+    });
+
+    renderResults(out.slice(0, 30)); // guard
+  }
+
+  function phenoChips(r) {
+    const cyp3a5 = TX.phenoCYP3A5(r["Genotypes (CYP3A5)"]);
+    const cyp3a4 = TX.phenoCYP3A4(r["Genotypes (CYP3A4)"]);
+    const abcb1  = TX.phenoABCB1(r["Genotypes (ABCB1 3435C>T)"]);
+
+    const chip = (label, pheno) => {
+      const [txt, cls] = TX.phenoBadge(pheno);
+      return `<span class="badge ${cls} me-1">${label}: ${txt}</span>`;
+    };
+    return chip("CYP3A5", cyp3a5) + chip("CYP3A4", cyp3a4) + chip("ABCB1", abcb1);
+  }
+
+  function renderResults(rows) {
+    const $root = $("#results");
+    $root.empty();
+
+    if (!rows.length) {
+      $root.append(`<div class="col-12"><div class="alert alert-light border">No patients found. Try a different query.</div></div>`);
+      return;
+    }
+
+    rows.forEach(r => {
+      const dob = r["DOB (dd/mm/yyyy)"] || "-";
+      const dots = r["Date of Transplant Surgery (DOTS)"] || "-";
+      const txType = r["Transplant Type"] || "-"; // if you have it
+      const drug = r["Immunosuppressant Used"] || "-";
+      const adj = r["Adjunct Immunosuppressants"] || ""; // optional column
+      const ht = Number(r["Height (cm)"]);
+      const wt = Number(r["Weight (kg)"]);
+      const age = TX.ageFromDOB(dob);
+      const bmi = TX.bmi(wt, ht);
+      const comorbid = r["Comorbidities"] || ""; // optional column
+
+      const link = TX.dosageLink(r["Patient ID"]);
+      const genoRow = `
+        <div class="small mt-2">
+          <div class="mb-1"><span class="muted">Genotypes:</span>
+            <span class="pill">${r["Genotypes (CYP3A5)"] || "-"}</span>
+            <span class="pill">${r["Genotypes (CYP3A4)"] || "-"}</span>
+            <span class="pill">${r["Genotypes (ABCB1 3435C>T)"] || "-"}</span>
+          </div>
+          ${phenoChips(r)}
+        </div>`;
+
+      const adjRow = adj ? `<div class="small"><span class="muted">Adjuncts:</span> ${adj}</div>` : "";
+      const coRow  = comorbid ? `<div class="small"><span class="muted">Comorbidities:</span> ${comorbid}</div>` : "";
+
+      const card = `
+        <div class="col-12 col-md-6">
+          <div class="card result-card p-3">
+            <div class="d-flex justify-content-between align-items-start">
+              <div>
+                <div class="fw-semibold">${r["Full Patient Name"]}</div>
+                <div class="muted">${r["Patient ID"]} · NRIC ${r["NRIC_Last5"] || "-"}</div>
+              </div>
+              <a class="btn btn-sm btn-outline-primary" href="${link}">View Dosage & Trends</a>
+            </div>
+            <hr class="mt-3 mb-3">
+            <div class="row">
+              <div class="col-6 small">
+                <div><span class="muted">DOB:</span> ${dob} <span class="muted">(${age ?? "-"} yrs)</span></div>
+                <div><span class="muted">Gender:</span> ${r["Gender"] || "-"}</div>
+                <div><span class="muted">Race:</span> ${r["Race"] || "-"}</div>
+                <div><span class="muted">Height:</span> ${isFinite(ht)? ht+" cm":"-"} · <span class="muted">Weight:</span> ${isFinite(wt)? wt+" kg":"-"} · <span class="muted">BMI:</span> ${bmi ?? "-"}</div>
+              </div>
+              <div class="col-6 small">
+                <div><span class="muted">Transplant:</span> ${dots}</div>
+                <div><span class="muted">Type:</span> ${txType}</div>
+                <div><span class="muted">Drug:</span> <span class="pill">${drug}</span></div>
+                ${adjRow}
+              </div>
+            </div>
+            ${genoRow}
+            ${coRow}
+          </div>
+        </div>`;
+      $root.append(card);
+    });
+  }
+
+  $("#btnSearch").on("click", searchPatients);
+  $("#q, #dob").on("keydown", (e) => { if (e.key === "Enter") searchPatients(); });
+  searchPatients();
+  
+  
+  </script>
+</body>
+</html>

@@ -1,0 +1,334 @@
+<!doctype html>
+<html class="no-js" lang="zxx">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <title>Staff Login for Transplant Nephrologists | Northshore General Hospital</title>
+  <link rel="icon" type="image/png" href="assets/img/logo/TransplantDose AI Logo.jpg">
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="manifest" href="site.webmanifest">
+
+  <!-- CSS here -->
+  <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+  <link rel="stylesheet" href="assets/css/owl.carousel.min.css">
+  <link rel="stylesheet" href="assets/css/slicknav.css">
+  <link rel="stylesheet" href="assets/css/flaticon.css">
+  <link rel="stylesheet" href="assets/css/gijgo.css">
+  <link rel="stylesheet" href="assets/css/animate.min.css">
+  <link rel="stylesheet" href="assets/css/animated-headline.css">
+  <link rel="stylesheet" href="assets/css/magnific-popup.css">
+  <link rel="stylesheet" href="assets/css/fontawesome-all.min.css">
+  <link rel="stylesheet" href="assets/css/themify-icons.css">
+  <link rel="stylesheet" href="assets/css/slick.css">
+  <link rel="stylesheet" href="assets/css/nice-select.css">
+  <link rel="stylesheet" href="assets/css/style.css">
+  <style>
+    /* keep card bottoms aligned for uneven content */
+    .single-team { display:flex; flex-direction:column; height:100%; }
+    .single-team .team-caption { display:flex; flex-direction:column; flex:1; }
+    .single-team .login-btn { margin-top:auto; }
+  </style>
+</head>
+<body>
+  <!-- ? Preloader Start -->
+  <div id="preloader-active">
+    <div class="preloader d-flex align-items-center justify-content-center">
+      <div class="preloader-inner position-relative">
+        <div class="preloader-circle"></div>
+        <div class="preloader-img pere-text">
+          <img src="assets/img/logo/loder.png" alt="">
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Preloader End -->
+
+  <!-- Header placeholder -->
+  <div id="site-header"></div>
+
+  <main>
+    <!--? Hero Start -->
+    <div class="slider-area2">
+      <div class="slider-height2 d-flex align-items-center">
+        <div class="container">
+          <div class="row">
+            <div class="col-xl-12">
+              <div class="hero-cap hero-cap2 text-center">
+                <h2>Staff Login for Transplant Nephrologists</h2>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Hero End -->
+
+    <!--? Team Start -->
+    <div class="team-area section-padding30">
+      <div class="container">
+        <!-- Section Title -->
+        <div class="row justify-content-center">
+          <div class="col-lg-8">
+            <div class="section-tittle text-center mb-60">
+              <span>Transplant Nephrologists</span>
+              <h2>Our Multi-Disciplinary Experts</h2>
+              <p class="mt-2">Select your name to sign in.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Cards -->
+        <div class="row" id="nephroGrid"></div>
+      </div>
+    </div>
+    <!-- Team End -->
+
+    <!-- Login modal -->
+    <div id="loginModal" class="mfp-hide white-popup-block" style="max-width:520px;margin:0 auto;padding:20px;background:#fff;border-radius:12px;">
+      <h3 class="mb-3">Staff Login</h3>
+      <form id="staffLoginForm" novalidate>
+        <div class="form-group mb-3">
+          <label>Role</label>
+          <input id="roleSelect" class="form-control" type="text" value="Transplant Nephrologists" readonly>
+        </div>
+        <div class="form-group mb-3">
+          <label>Display Name</label>
+          <input id="displayName" class="form-control" type="text" required readonly>
+        </div>
+        <div class="form-group mb-3">
+          <label>Email</label>
+          <input id="email" class="form-control" type="email" placeholder="name@example.com" required>
+        </div>
+        <div class="form-group mb-4">
+          <label>Password</label>
+          <input id="password" class="form-control" type="password" minlength="6" placeholder="Enter your password" required>
+        </div>
+        <button type="submit" class="btn btn-primary w-100">Sign in</button>
+        <div class="text-muted mt-2" style="font-size:0.9rem;">(Demo: email & password must match your assigned credentials.)</div>
+      </form>
+    </div>
+  </main>
+
+  <!-- Footer placeholder -->
+  <div id="site-footer"></div>
+
+  <!-- JS here -->
+  <script src="./assets/js/vendor/modernizr-3.5.0.min.js"></script>
+  <script src="./assets/js/vendor/jquery-1.12.4.min.js"></script>
+  <script src="./assets/js/popper.min.js"></script>
+  <script src="./assets/js/bootstrap.min.js"></script>
+  <script src="./assets/js/jquery.slicknav.min.js"></script>
+  <script src="./assets/js/owl.carousel.min.js"></script>
+  <script src="./assets/js/slick.min.js"></script>
+  <script src="./assets/js/wow.min.js"></script>
+  <script src="./assets/js/animated.headline.js"></script>
+  <script src="./assets/js/jquery.magnific-popup.js"></script>
+  <script src="./assets/js/gijgo.min.js"></script>
+  <script src="./assets/js/jquery.nice-select.min.js"></script>
+  <script src="./assets/js/jquery.sticky.js"></script>
+  <script src="./assets/js/jquery.counterup.min.js"></script>
+  <script src="./assets/js/waypoints.min.js"></script>
+  <script src="./assets/js/jquery.countdown.min.js"></script>
+  <script src="./assets/js/contact.js"></script>
+  <script src="./assets/js/jquery.form.js"></script>
+  <script src="./assets/js/jquery.validate.min.js"></script>
+  <script src="./assets/js/mail-script.js"></script>
+  <script src="./assets/js/jquery.ajaxchimp.min.js"></script>
+  <script src="./assets/js/plugins.js"></script>
+  <script src="./assets/js/main.js"></script>
+
+  <script>
+    // --- Auto-route if already "logged in"
+    (function () {
+      try {
+        const user = JSON.parse(sessionStorage.getItem('user') || 'null');
+        const onRolePage = true; // nephrologists page
+        if (user && onRolePage) location.href = 'patient.html';
+      } catch (e) {}
+    })();
+
+    // --- DATA: Transplant Nephrologists
+    const IMG_BASE = "assets/img/Transplant Nephrologist";
+
+    const NEPHROLOGISTS = [
+      {
+        title: "Professor",
+        name: "Kee Yi Shern Terence",
+        qualifications: "MBBS (AUST), MRCP (UK), FRCP (UK), FAMS, FACP, FRCP (Lond), FRPCT (Hon), FPCT (Hon), MSc (Transplantation) (UK), GDipHML",
+        position: "Senior Consultant, Medical Director Renal Transplant Programme",
+        department: "Department of Renal Medicine Northshore General Hospital",
+        image: "Terence_Kee.jpg",
+        email: "terence.kee@ngh.com.sg",
+        password: "DemoPass!Kee2025"
+      },
+      {
+        title: "Professor",
+        name: "Anantharaman Vathsala",
+        qualifications: "BS (USA), MD (USA), FRCP (Edin), FAMS (S'pore)",
+        position: "Head & Senior Consultant, Department of Medicine",
+        department: "Department of Renal Medicine Northshore General Hospital",
+        image: "A_Vathsala.jpg",
+        email: "anantharaman.vathsala@ngh.com.sg",
+        password: "DemoPass!Vathsala2025"
+      },
+      {
+        title: "Clinical Associate Professor",
+        name: "Jason Choo",
+        qualifications: "MBBS (Australia), MRCP (UK), MMed (S'pore), FAMS, FRCP (Edin), FRCP (London), FASN",
+        position: "Senior Consultant, Programme Director of the Renal Fellowship Programme; Medical Director of Northshore Kidney Foundation, Singapore",
+        department: "Department of Renal Medicine Northshore General Hospital",
+        image: "Jason_Choo.jpg",
+        email: "jason.choo@ngh.com.sg",
+        password: "DemoPass!Choo2025"
+      },
+      {
+        title: "Professor",
+        name: "Hersharan Kaur Saur",
+        qualifications: "MBBS (Lond), MRCP (UK), FRCP (Lond), FAMS",
+        position: "Senior Consultant, Department of Renal Medicine",
+        department: "Department of Renal Medicine Northshore General Hospital",
+        image: "Hersharan_Kaur_Saur.jpg",
+        email: "hersharan.saur@ngh.com.sg",
+        password: "DemoPass!Saur2025"
+      },
+      {
+        title: "Dr",
+        name: "Kristen Alexa Lee",
+        qualifications: "MD Board Certified IR/DR (USA)",
+        position: "Consultant, Department of Renal Medicine",
+        department: "Department of Renal Medicine Northshore General Hospital",
+        image: "Kristen_Alexa_Lee.jpg",
+        email: "kristen.lee@ngh.com.sg",
+        password: "DemoPass!Lee2025"
+      },
+      {
+        title: "Dr",
+        name: "Kang Yong Chiang",
+        qualifications: "MBBS (Singapore), MRCS (Edin), MMed (Int Med) (S’pore), MRCP (UK)",
+        position: "Consultant, Department of Renal Medicine",
+        department: "Department of Renal Medicine Northshore General Hospital",
+        image: "Kang_Yong_Chiang.jpg",
+        email: "yongchiang.kang@ngh.com.sg",
+        password: "DemoPass!Kang2025"
+      },
+      {
+        title: "Dr",
+        name: "Kovalik Jean-Paul",
+        qualifications: "MD, PhD, ABIM (Int Med, Endocrinology) (USA)",
+        position: "Associate Consultant, Department of Endocrinology",
+        department: "Department of Renal Medicine Northshore General Hospital",
+        image: "Kovalik_Jean-Paul.jpg",
+        email: "jeanpaul.kovalik@ngh.com.sg",
+        password: "DemoPass!Kovalik2025"
+      },
+      {
+        title: "Dr",
+        name: "Sobhana Thangaraju",
+        qualifications: "MBBS, MRCP(UK), FAMS",
+        position: "Senior Consultant, Department of Renal Medicine",
+        department: "Department of Renal Medicine Northshore General Hospital",
+        image: "Sobhana_Thangaraju.jpg",
+        email: "sobhana.thangaraju@ngh.com.sg",
+        password: "DemoPass!Thangaraju2025"
+      }
+    ];
+
+    // --- Render cards
+    function renderCards() {
+      const $grid = $('#nephroGrid').empty();
+
+      NEPHROLOGISTS.forEach((p, idx) => {
+        const src = encodeURI(`${IMG_BASE}/${p.image}`);
+        const fullName = `${p.title ? p.title + ' ' : ''}${p.name}`;
+        const quals = p.qualifications ? `<div>${p.qualifications}</div>` : '';
+        const dept  = p.department ? `<div>${p.department}</div>` : '';
+
+        const card = $(`
+          <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 d-flex">
+            <div class="single-team mb-30 d-flex flex-column" data-index="${idx}" style="cursor:pointer; width:100%;">
+              <div class="team-img">
+                <img src="${src}" alt="${p.name}">
+              </div>
+              <div class="team-caption d-flex flex-column" style="flex:1;">
+                <h3><a href="#">${fullName}</a></h3>
+                <span>${p.position || ''}</span>
+                <div class="mt-2" style="font-size:1.5rem;line-height:1.45;">
+                  ${quals}
+                  ${dept}
+                </div>
+                <button class="btn btn-sm btn-primary mt-auto w-100 login-btn">Login</button>
+              </div>
+            </div>
+          </div>
+        `);
+
+        // Log missing images to console if any
+        card.find('img').on('error', function () { console.warn('Missing image:', this.src); });
+
+        // Click handler opens the modal
+        card.on('click', '.login-btn, .single-team', function (e) {
+          e.preventDefault();
+          e.stopPropagation();
+          openLoginFor(idx);
+        });
+
+        $grid.append(card);
+      });
+    }
+
+    function openLoginFor(idx) {
+      const p = NEPHROLOGISTS[idx];
+      $('#displayName').val(p.name);
+      $('#email').val('');
+      $('#password').val('');
+      $('#email').attr('placeholder', p.email);
+      $.magnificPopup.open({ items: { src: '#loginModal' }, type: 'inline', closeBtnInside: true });
+      $('#loginModal').data('person-index', idx);
+    }
+
+    // --- Client-side mock authentication
+    $('#staffLoginForm').on('submit', function (e) {
+      e.preventDefault();
+      const idx = $('#loginModal').data('person-index');
+      if (idx == null) return alert('Please select a staff member.');
+
+      const p = NEPHROLOGISTS[idx];
+      const email = $('#email').val().trim().toLowerCase();
+      const password = $('#password').val();
+
+      if (!email || !password) return alert('Please enter email and password.');
+
+      const ok = (email === p.email.toLowerCase()) && (password === p.password);
+      if (!ok) return alert('Invalid email or password.');
+
+      const user = { role: 'Transplant Nephrologists', displayName: p.name, email: p.email };
+      sessionStorage.setItem('user', JSON.stringify(user));
+      $.magnificPopup.close();
+      location.href = 'patient.html';
+    });
+
+    // Run
+    $(function(){ renderCards(); });
+
+    // --- Inject header & footer partials
+    async function inject(id, url) {
+      try {
+        const html = await fetch(url, { cache: 'no-cache' }).then(r => r.text());
+        document.getElementById(id).innerHTML = html;
+      } catch (e) {
+        console.warn('Failed to load', url, e);
+      }
+    }
+
+    Promise.all([
+      inject('site-header', 'components/header.html'),
+      inject('site-footer', 'components/footer.html')
+    ]).then(() => {
+      // Scripts inside injected HTML don't auto-run; set the year here.
+      const y = document.getElementById('tdai-year');
+      if (y) y.textContent = new Date().getFullYear();
+    });
+  </script>
+</body>
+</html>

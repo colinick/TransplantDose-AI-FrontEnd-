@@ -1,0 +1,104 @@
+<!-- Header Start -->
+<div class="header-area">
+  <div class="main-header header-sticky">
+    <div class="container-fluid">
+      <div class="row align-items-center">
+        <!-- Logo -->
+        <div class="col-xl-2 col-lg-2 col-md-1">
+          <div class="logo">
+            <a href="index.html"><img src="assets/img/logo/TransplantDose AI Logo.jpg" alt="TransplantDose AI" style="width: 150px; height: auto;"></a>
+          </div>
+        </div>
+
+        <div class="col-xl-10 col-lg-10 col-md-10">
+          <div class="menu-main d-flex align-items-center justify-content-end">
+            <!-- Main-menu -->
+            <div class="main-menu f-right d-none d-lg-block">
+              <nav aria-label="Primary">
+                <ul id="navigation">
+
+                  <!-- ===== PRE-LOGIN NAV ===== -->
+                  <li data-nav="pre"><a href="index.html">Home</a></li>
+                  <li data-nav="pre"><a href="about.html">About</a></li>
+
+                  <!-- Staff Login with roles (pre-login) -->
+                  <li class="has-submenu" data-nav="pre">
+                    <a href="#">Staff Login</a>
+                    <ul class="submenu" aria-label="Staff roles">
+                      <li><a href="transplant_nephrologist.html">Transplant Nephrologists</a></li>
+                      <li><a href="transplant nurses.html">Transplant Nurses</a></li>
+                      <li><a href="transplant coordinators.html">Transplant Coordinators</a></li>
+                      <li><a href="transplant pharmacists.html">Transplant Pharmacists</a></li>
+                      <li><a href="transplant researchers.html">Transplant Researchers</a></li>
+                    </ul>
+                  </li>
+
+                  <!-- Added: Contact + Disclaimer (pre-login) -->
+                  <li data-nav="pre"><a href="contact.html">Contact</a></li>
+                  <li data-nav="pre"><a href="disclaimer&privacy.html">Disclaimer &amp; Privacy</a></li>
+
+                  <!-- ===== POST-LOGIN NAV ===== -->
+                  <li data-nav="post" style="display:none"><a href="index.html">Home</a></li>
+                  <li data-nav="post" style="display:none"><a href="patient-lookup.html">Patient Lookup</a></li>
+                  <li data-nav="post" style="display:none"><a href="Dosage Predicted-Dashboard.html">Dosage &amp; Trends</a></li>
+                  <li data-nav="post" style="display:none"><a href="contact.html">Contact</a></li>
+                  <li data-nav="post" style="display:none"><a href="disclaimer&privacy.html">Disclaimer &amp; Privacy</a></li>
+
+                  <!-- User chip + logout (post-login only) -->
+                  <li data-nav="post" id="userMenu" class="has-submenu" style="display:none">
+                    <a href="#"><span id="userChip">Signed in</span></a>
+                    <ul class="submenu" aria-label="User menu">
+                      <li><a href="profile.html">My Profile</a></li>
+                      <li><a href="#" id="logoutBtn">Logout</a></li>
+                    </ul>
+                  </li>
+                </ul>
+              </nav>
+            </div>
+
+            <div class="header-right-btn f-right d-none d-lg-block ml-30">
+                          </div>
+          </div>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div class="col-12">
+          <div class="mobile_menu d-block d-lg-none"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Header End -->
+
+<!-- ===== Auth & Nav Logic (include in header so all pages get it) ===== -->
+
+<script>
+  // --- Mock login handler (runs only when a form with id="loginForm" exists) ---
+  (function attachMockLoginHandler() {
+    const form = document.getElementById('loginForm');
+    if (!form) return;
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();
+      const email = document.getElementById('email').value;
+      const password = document.getElementById('password').value;
+
+      // Mock authentication check
+      if (email === "colin.sng@ngh.com.sg" && password === "DemoPass!Sng2025") {
+        sessionStorage.setItem('auth', JSON.stringify({
+          title: "Mr",
+          displayName: "Colin Nicholas Sng",
+          qualifications: "BSc (Biomedical Science), MBA, Master in IT (AI & Data Science)",
+          position: "Clinical Data Scientist & Full Stack Developer (Renal Transplant)",
+          department: "Renal Transplant Research Unit, Department of Renal Medicine, Northshore General Hospital",
+          image: "Colin_Nicholas_Sng.jpg",
+          email: "colin.sng@ngh.com.sg",
+          role: "Transplant Pharmacist",
+          userId: "u123"
+        }));
+        const params = new URLSearchParams(location.search);
+        // Do something with params here if needed
+      }
+    });
+  })();
+</script>

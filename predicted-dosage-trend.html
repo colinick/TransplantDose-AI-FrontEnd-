@@ -1,0 +1,308 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>TransplantDose AI — Dosage & Trends</title>
+  <link rel="icon" type="image/png" href="assets/img/logo/TransplantDose AI Logo.jpg">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+  <style>
+    .page-wrap { max-width: 1100px; margin: 2rem auto; padding: 0 1rem; }
+    .muted { color:#6c757d; }
+    .panel { border-radius: 14px; box-shadow: 0 10px 25px rgba(0,0,0,0.06); }
+    .legend-pill { display:inline-block; padding:.2rem .5rem; border-radius:999px; background:#eef3ff; color:#193b8a; font-size:.85rem; margin-right:.35rem;}
+  </style>
+  <!-- Vendor -->
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/papaparse@5.4.1/papaparse.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.3/dist/chart.umd.min.js"></script>
+  <!-- Shared helpers -->
+  <script src="assets/js/dataLoader.js"></script>
+</head>
+
+<body>
+
+  <nav class="navbar navbar-expand-lg bg-white border-bottom sticky-top">
+    <div class="container">
+      <a class="navbar-brand fw-semibold" href="index.html">TransplantDose AI</a>
+      <div class="collapse navbar-collapse show">
+        <ul class="navbar-nav me-auto">
+          <li class="nav-item"><a class="nav-link" href="patient-lookup.html">Patient Lookup</a></li>
+          <li class="nav-item"><a class="nav-link active" href="predicted-dosage-trend.html">Dosage & Trends</a></li>
+          <li class="nav-item"><a class="nav-link" href="cohort-dashboard.html">Cohort Dashboard</a></li>
+          <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+          <li class="nav-item"><a class="nav-link" href="index.html">Logout</a></li>
+        </ul>
+        <a class="btn btn-outline-secondary btn-sm" id="backToPatient" href="patient-lookup.html">← Back to Lookup</a>
+      </div>
+    </div>
+  </nav>
+
+  <main class="page-wrap">
+    <div class="d-flex align-items-end gap-2 mb-3">
+      <div>
+        <label class="form-label mb-1">Patient</label>
+        <input id="patientIdInput" class="form-control" placeholder="e.g., RT1004">
+      </div>
+      <button id="btnLoad" class="btn btn-primary">Load</button>
+    </div>
+
+    <div id="meta" class="panel p-3 mb-3">
+      <div class="small muted">Patient:</div>
+      <div id="metaName" class="fw-semibold">–</div>
+      <div id="metaLine" class="muted">–</div>
+    </div>
+
+    <div class="panel p-3 mb-3">
+      <div class="mb-2">
+        <span class="legend-pill">C0 (ng/mL)</span>
+        <span class="legend-pill">Estimated Dose (mg/day)</span>
+        <span class="legend-pill">Creatinine (µmol/L)</span>
+        <span class="legend-pill">Albumin (g/L)</span>
+      </div>
+      <canvas id="trendChart" height="120"></canvas>
+    </div>
+
+    <div class="panel p-3 mb-3">
+      <h2 class="h6">Recent Lab Snapshot</h2>
+      <div class="table-responsive">
+        <table class="table table-sm table-striped align-middle">
+          <thead>
+            <tr>
+              <th>Date</th>
+              <th>C0 (ng/mL)</th>
+              <th>Estimated Dose (mg/day)</th>
+              <th>Serum Creatinine</th>
+              <th>Albumin</th>
+            </tr>
+          </thead>
+          <tbody id="labBody"></tbody>
+        </table>
+      </div>
+    </div>
+    <div id="meta" class="panel p-3 mb-3">
+  <div class="small muted">Patient:</div>
+  <div id="metaName" class="fw-semibold">–</div>
+  <div id="metaLine" class="muted">–</div>
+  <div id="metaGenos" class="mt-2 small"></div>
+</div>
+
+<div class="row g-2 mb-3">
+  <div class="col-12 col-md-3">
+    <div class="panel p-3">
+      <div class="small muted">AI Predicted Dose</div>
+      <div id="kpiPredDose" class="fs-5 fw-semibold">–</div>
+    </div>
+  </div>
+  <div class="col-12 col-md-3">
+    <div class="panel p-3">
+      <div class="small muted">Target Trough Range (ng/mL)</div>
+      <div id="kpiTarget" class="fs-6 fw-semibold">–</div>
+    </div>
+  </div>
+  <div class="col-12 col-md-3">
+    <div class="panel p-3">
+      <div class="small muted">Prediction Confidence</div>
+      <div id="kpiConf" class="fs-6 fw-semibold">–</div>
+    </div>
+  </div>
+  <div class="col-12 col-md-3">
+    <div class="panel p-3">
+      <label class="form-label small mb-1">Trend Metric</label>
+      <select id="metricSel" class="form-select form-select-sm">
+        <option value="Drug Trough C0 (ng/mL)">C0 (ng/mL)</option>
+        <option value="Serum Creatinine (µmol/L)">Serum Creatinine</option>
+        <option value="ALT (U/L)">ALT</option>
+        <option value="AST (U/L)">AST</option>
+        <option value="LDL (mmol/L)">LDL</option>
+        <option value="HDL (mmol/L)">HDL</option>
+        <option value="Triglycerides (mmol/L)">Triglycerides</option>
+        <option value="Albumin (g/L)">Albumin</option>
+      </select>
+    </div>
+  </div>
+</div> 
+
+<div class="alert alert-light border mt-3">
+  <div class="d-flex align-items-center mb-2">
+    <span class="badge text-bg-primary me-2">README</span>
+    <strong>About this Prototype</strong>
+  </div>
+  <ul class="mb-2">
+    <li><em>AI Predicted Dose</em> is computed with genotype-aware rules and rounded to SG-available strengths. The ML model is not live yet.</li>
+    <li>Target trough bands are shown for quick context (tac 5–12; CsA 100–200; SRL 5–15; EVR 3–8 ng/mL).</li>
+    <li>Confidence is a mock 0.65–0.90 score based on data completeness (weight + 3 genotypes) and drug (tacrolimus has the strongest evidence).</li>
+    <li>This is a non-clinical demo — decisions should rely on TDM and clinician judgment.</li>
+  </ul>
+  <div class="small text-muted">
+    Swap in a real model later via <code>POST /api/predict-dose</code> → <code>{ predictedDoseMgPerDay, targetRange, confidence }</code>.
+  </div>
+</div>
+
+
+  </main>
+
+  <script>
+    const PTS = "assets/data/Patients_100_withNRIC.csv";
+  const LAB = "assets/data/Labs_20_patients_Updated.csv";
+  let chart;
+
+  async function loadFor(patientId) {
+    if (!patientId) return;
+    $("#patientIdInput").val(patientId);
+
+    const [patients, labs] = await Promise.all([TX.loadCSV(PTS), TX.loadCSV(LAB)]);
+    const pt = patients.find(r => String(r["Patient ID"]) === String(patientId));
+
+    // Header
+    if (pt) {
+      $("#metaName").text(`${pt["Full Patient Name"]} (${pt["Patient ID"]})`);
+      const age = TX.ageFromDOB(pt["DOB (dd/mm/yyyy)"]);
+      $("#metaLine").text(`Age ${age ?? "-"} · ${pt["Gender"] || "-"} · ${pt["Race"] || "-"} · Drug: ${pt["Immunosuppressant Used"] || "-"} · DOTS: ${pt["Date of Transplant Surgery (DOTS)"] || "-"}`);
+      $("#backToPatient").attr("href", `patient-lookup.html?q=${encodeURIComponent(patientId)}`);
+
+      // genotype + phenotype chips
+      const chips = (label, pheno) => {
+        const [txt, cls] = TX.phenoBadge(pheno);
+        return `<span class="badge ${cls} me-1">${label}: ${txt}</span>`;
+      };
+      const cyp3a5 = TX.phenoCYP3A5(pt["Genotypes (CYP3A5)"]);
+      const cyp3a4 = TX.phenoCYP3A4(pt["Genotypes (CYP3A4)"]);
+      const abcb1  = TX.phenoABCB1(pt["Genotypes (ABCB1 3435C>T)"]);
+      $("#metaGenos").html(
+        `<span class="muted">Genotypes:</span>
+         <span class="pill">${pt["Genotypes (CYP3A5)"] || "-"}</span>
+         <span class="pill">${pt["Genotypes (CYP3A4)"] || "-"}</span>
+         <span class="pill">${pt["Genotypes (ABCB1 3435C>T)"] || "-"}</span><br>
+         ${chips("CYP3A5", cyp3a5)} ${chips("CYP3A4", cyp3a4)} ${chips("ABCB1", abcb1)}`
+      );
+    } else {
+      $("#metaName").text(`Unknown patient (${patientId})`);
+      $("#metaLine").text("—");
+      $("#metaGenos").empty();
+    }
+
+    // Rows for this patient
+    const rows = labs
+      .filter(r => String(r["Patient ID"]) === String(patientId))
+      .map(r => ({
+        raw: r,
+        date: TX.parseDMY(String(r["Blood Test Date (dd/mm/yyyy)"] || r["Blood Test Date"])),
+      }))
+      .filter(r => r.date)
+      .sort((a,b) => a.date - b.date);
+
+    // KPIs from latest
+    const latest = rows.at(-1)?.raw || {};
+    $("#kpiPredDose").text(latest["AI Predicted Dose (mg/day)"] ?? "–");
+    $("#kpiTarget").text(latest["Target Trough Range (ng/mL)"] ?? "–");
+    $("#kpiConf").text((latest["Prediction Confidence"] != null) ? (latest["Prediction Confidence"]*100).toFixed(0)+"%" : "–");
+
+    renderTable(rows.map(r => r.raw));
+    renderChart(rows.map(r => r.raw));
+  }
+
+  function renderTable(rows) {
+    const $b = $("#labBody");
+    $b.empty();
+    rows.slice(-3).reverse().forEach(r => {
+      const ok = TX.inTherapeuticRangeC0(r["Drug Trough C0 (ng/mL)"]);
+      const badge = (ok === null) ? "" : ok ? `<span class="badge text-bg-success">OK</span>` : `<span class="badge text-bg-danger">Out</span>`;
+      $b.append(`
+        <tr>
+          <td>${TX.fmtDMY(TX.parseDMY(String(r["Blood Test Date (dd/mm/yyyy)"] || r["Blood Test Date"])))}</td>
+          <td>${r["Drug Trough C0 (ng/mL)"] ?? "-" } ${badge}</td>
+          <td>${r["Estimated Dose (mg/day)"] ?? "-"}</td>
+          <td>${r["Serum Creatinine (µmol/L)"] ?? "-"}</td>
+          <td>${r["Albumin (g/L)"] ?? "-"}</td>
+        </tr>
+      `);
+    });
+  }
+
+  function renderChart(rows) {
+    const metric = $("#metricSel").val();
+    const labels = rows.map(r => TX.fmtDMY(TX.parseDMY(String(r["Blood Test Date (dd/mm/yyyy)"] || r["Blood Test Date"]))));
+    const series = rows.map(r => (r[metric] ?? null));
+
+    // mock "events" when Estimated Dose jumps >=10%
+    const dose = rows.map(r => r["Estimated Dose (mg/day)"] ?? null);
+    const events = [];
+    for (let i=1;i<rows.length;i++) {
+      if (dose[i-1] && dose[i]) {
+        const delta = Math.abs(dose[i]-dose[i-1]) / dose[i-1];
+        if (delta >= 0.10) events.push({ x: i, label: "Dose change" });
+      }
+    }
+
+    const ctx = document.getElementById('trendChart').getContext('2d');
+    if (chart) chart.destroy();
+
+    const datasets = [
+      { label: metric, data: series, borderWidth: 2, tension: .2, yAxisID: 'y' }
+    ];
+
+    // add a faint target band if metric is C0
+    const latest = rows.at(-1) || {};
+    const target = (metric === "Drug Trough C0 (ng/mL)") ? (latest["Target Trough Range (ng/mL)"] || "") : "";
+    const band = TX.parseRange(target); // {lo,hi} or null
+    const plugins = [];
+
+    if (band) {
+      plugins.push({
+        id: 'targetBand',
+        beforeDraw(chart, args, opts) {
+          const {chartArea, scales} = chart;
+          const yTop = scales.y.getPixelForValue(band.hi);
+          const yBot = scales.y.getPixelForValue(band.lo);
+          const ctx = chart.ctx;
+          ctx.save();
+          ctx.fillStyle = 'rgba(100, 180, 255, 0.12)';
+          ctx.fillRect(chartArea.left, Math.min(yTop,yBot), chartArea.right - chartArea.left, Math.abs(yBot - yTop));
+          ctx.restore();
+        }
+      });
+    }
+
+    // vertical markers for events
+    plugins.push({
+      id: 'eventMarkers',
+      afterDatasetsDraw(chart) {
+        const {ctx, chartArea, scales} = chart;
+        ctx.save();
+        ctx.strokeStyle = 'rgba(220,100,80,0.8)';
+        ctx.setLineDash([5,5]);
+        events.forEach(ev => {
+          const x = scales.x.getPixelForValue(ev.x);
+          ctx.beginPath();
+          ctx.moveTo(x, chartArea.top);
+          ctx.lineTo(x, chartArea.bottom);
+          ctx.stroke();
+        });
+        ctx.restore();
+      }
+    });
+
+    chart = new Chart(ctx, {
+      type: 'line',
+      data: { labels, datasets },
+      options: {
+        responsive: true,
+        interaction: { mode: 'index', intersect: false },
+        plugins: { legend: { position: 'top' } },
+        scales: { y: { type:'linear', position:'left', beginAtZero:false } }
+      },
+      plugins
+    });
+  }
+
+  // Wiring
+  $("#btnLoad").on("click", () => loadFor($("#patientIdInput").val().trim()));
+  $("#metricSel").on("change", () => loadFor($("#patientIdInput").val().trim()));
+  const initial = TX.getParam("patient");
+  if (initial) loadFor(initial);
+
+  
+  </script>
+</body>
+</html>

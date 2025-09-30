@@ -1,0 +1,60 @@
+/* Welcome Section */
+.welcome-area {
+    padding: 100px 0;
+}
+
+.professor-img {
+    border: 3px solid #4a90e2;
+}
+
+/* Purpose Section */
+.purpose-icon i {
+    font-size: 40px;
+    color: #4a90e2;
+}
+
+.single-purpose {
+    padding: 30px;
+    border-radius: 10px;
+    background: white;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+    transition: all 0.3s ease;
+}
+
+.single-purpose:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+}
+
+/* Limitations Section */
+.limitation-icon i {
+    font-size: 24px;
+    margin-top: 5px;
+}
+
+/* CTA Section */
+.cta-area {
+    background: linear-gradient(135deg, #4a90e2 0%, #2d5985 100%);
+}
+
+.btn-outline-light:hover {
+    color: #4a90e2;
+    background: white;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 767px) {
+    .welcome-area, .purpose-area, .limitations-area {
+        padding: 60px 0;
+    }
+    
+    .cta-buttons .btn {
+        display: block;
+        width: 100%;
+        margin-bottom: 15px;
+    }
+    
+    .cta-buttons .btn:not(:last-child) {
+        margin-right: 0;
+    }
+}

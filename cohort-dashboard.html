@@ -1,0 +1,373 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>TransplantDose AI — Cohort Dashboard</title>
+  <link rel="icon" type="image/png" href="assets/img/logo/TransplantDose AI Logo.jpg">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+  <style>
+    .page-wrap { max-width:1200px; margin:2rem auto; padding:0 1rem; }
+    .kpi { border-radius:14px; box-shadow:0 10px 25px rgba(0,0,0,.06); padding:1rem; }
+    .muted{color:#6c757d;}
+  </style>
+  <!-- Vendor -->
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/papaparse@5.4.1/papaparse.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.3/dist/chart.umd.min.js"></script>
+  <!-- Shared helpers -->
+  <script src="assets/js/dataLoader.js"></script>
+</head>
+
+<body>
+  <nav class="navbar navbar-expand-lg bg-white border-bottom sticky-top">
+    <div class="container">
+      <a class="navbar-brand fw-semibold" href="index.html">TransplantDose AI</a>
+      <div class="collapse navbar-collapse show">
+        <ul class="navbar-nav me-auto">
+          <li class="nav-item"><a class="nav-link active" href="patient-lookup.html">Patient Lookup</a></li>
+          <li class="nav-item"><a class="nav-link" href="predicted-dosage-trend.html">Dosage & Trends</a></li>
+          <li class="nav-item"><a class="nav-link" href="cohort-dashboard.html">Cohort Dashboard</a></li>
+          <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+          <li class="nav-item"><a class="nav-link" href="index.html">Logout</a></li>
+          <li><a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#aboutModal">About</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <main class="page-wrap">
+    <h1 class="h4 mb-3">Cohort Dashboard</h1>
+    <p class="muted mb-4">Population-level view across all programme patients (100) and the tracked lab cohort (20).</p>
+<div class="kpi mb-3">
+  <div class="row g-2">
+    <div class="col-12 col-md-3">
+      <label class="form-label small">Drug</label>
+      <select id="fDrug" class="form-select form-select-sm"><option value="">All</option></select>
+    </div>
+    <div class="col-12 col-md-3">
+      <label class="form-label small">CYP3A5</label>
+      <select id="f3A5" class="form-select form-select-sm"><option value="">All</option></select>
+    </div>
+    <div class="col-12 col-md-3">
+      <label class="form-label small">CYP3A4</label>
+      <select id="f3A4" class="form-select form-select-sm"><option value="">All</option></select>
+    </div>
+    <div class="col-12 col-md-3">
+      <label class="form-label small">ABCB1</label>
+      <select id="fABCB1" class="form-select form-select-sm"><option value="">All</option></select>
+    </div>
+    <div class="col-6 col-md-3">
+      <label class="form-label small">DOTS From</label>
+      <input id="fFrom" class="form-control form-control-sm" placeholder="dd/mm/yyyy">
+    </div>
+    <div class="col-6 col-md-3">
+      <label class="form-label small">DOTS To</label>
+      <input id="fTo" class="form-control form-control-sm" placeholder="dd/mm/yyyy">
+    </div>
+    <div class="col-12 col-md-3">
+      <label class="form-label small">Age Group</label>
+      <select id="fAge" class="form-select form-select-sm">
+        <option value="">All</option>
+        <option value="0-29">0–29</option>
+        <option value="30-49">30–49</option>
+        <option value="50-69">50–69</option>
+        <option value="70+">70+</option>
+      </select>
+    </div>
+    <div class="col-12 col-md-3">
+      <label class="form-label small">&nbsp;</label>
+      <button id="btnApply" class="btn btn-primary w-100 btn-sm">Apply Filters</button>
+    </div>
+  </div>
+</div>
+
+    <!-- KPIs -->
+    <div class="row g-3 mb-3">
+      <div class="col-6 col-md-3"><div class="kpi text-center"><div class="muted small">Total Patients</div><div id="kpiTotal" class="fs-3 fw-semibold">–</div></div></div>
+      <div class="col-6 col-md-3"><div class="kpi text-center"><div class="muted small">Tracked (Labs)</div><div id="kpiTracked" class="fs-3 fw-semibold">–</div></div></div>
+      <div class="col-6 col-md-3"><div class="kpi text-center"><div class="muted small">On Tacrolimus</div><div id="kpiTac" class="fs-3 fw-semibold">–</div></div></div>
+      <div class="col-6 col-md-3"><div class="kpi text-center"><div class="muted small">Recent Out-of-Range C0</div><div id="kpiOut" class="fs-3 fw-semibold">–</div></div></div>
+    </div>
+
+    <div class="row g-3">
+      <div class="col-12 col-lg-6">
+        <div class="kpi">
+          <h2 class="h6">Immunosuppressant Usage</h2>
+          <canvas id="drugPie" height="200"></canvas>
+        </div>
+      </div>
+      <div class="col-12 col-lg-6">
+        <div class="kpi">
+          <h2 class="h6">Gender Distribution</h2>
+          <canvas id="genderBar" height="200"></canvas>
+        </div>
+      </div>
+      <div class="col-12">
+        <div class="kpi">
+          <h2 class="h6">Patients Requiring Review (Latest C0 outside 5–12 ng/mL)</h2>
+          <div class="table-responsive">
+            <table class="table table-sm table-striped align-middle">
+              <thead>
+                <tr>
+                  <th>Patient</th>
+                  <th>Date</th>
+                  <th>Latest C0</th>
+                  <th>Estimated Dose</th>
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody id="alertBody"></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+<!-- About / README Modal -->
+<div class="modal fade" id="aboutModal" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-lg modal-dialog-scrollable">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">TransplantDose AI — Prototype Notes</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="alert alert-info">
+          <strong>Purpose:</strong> This UI demonstrates how an AI-assisted workflow could look for renal transplant dosing during the first 0–3 months post-op. 
+          The “AI Predicted Dose” values shown are <em>prototype calculations</em> (rules + rounding); the ML model is not live yet.
+        </div>
+
+        <h6>Data sources in the demo</h6>
+        <ul class="mb-3">
+          <li><code>Patients_100_withNRIC.csv</code> — demographics, transplant info, genotypes (CYP3A5, CYP3A4, ABCB1).</li>
+          <li><code>Labs_20_patients_Updated.csv</code> — ~90 days of daily labs for 20 patients + mock “AI Predicted Dose”, target troughs, and confidence.</li>
+        </ul>
+
+        <h6>How “AI Predicted Dose” is generated (prototype)</h6>
+        <ul class="mb-3">
+          <li><strong>Tacrolimus:</strong> <code>≈ 0.1 mg/kg/day × Genetic Dose Factor</code>, then clamped to <code>2–6 mg/day</code>, rounded to <code>0.5 mg</code> capsules.</li>
+          <li><strong>Cyclosporine:</strong> <code>≈ 3.5 mg/kg/day</code>, clamped to <code>100–300 mg/day</code>, rounded to <code>10 mg</code> softgels.</li>
+          <li><strong>Sirolimus:</strong> <code>≈ 0.045 mg/kg/day</code>, clamped to <code>1–4 mg/day</code>, rounded to <code>0.5 mg</code> tablets.</li>
+          <li><strong>Everolimus:</strong> <code>≈ 0.03 mg/kg/day</code>, clamped to <code>0.75–3 mg/day</code>, rounded to <code>0.25 mg</code> tablets.</li>
+        </ul>
+
+        <h6>Genetic Dose Factor (tacrolimus)</h6>
+        <ul class="mb-3">
+          <li><strong>CYP3A5:</strong> Expresser (*1 carrier) → ×<code>~1.7</code>; Non-expresser (*3/*3) → ×<code>1.0</code>.</li>
+          <li><strong>CYP3A4*22:</strong> Reduced (*1/*22) → ×<code>0.85</code>; Markedly reduced (*22/*22) → ×<code>0.70</code>.</li>
+          <li><strong>ABCB1 3435C>T:</strong> Low P-gp (*2/*2) → ×<code>0.90</code>; High P-gp (*1/*1) → ×<code>1.05</code>; Intermediate → ×<code>1.0</code>.</li>
+        </ul>
+
+        <h6>Rounding to Singapore-available strengths</h6>
+        <p class="mb-3">
+          Tacrolimus (0.5/1/5 mg), Cyclosporine (10/25/50/100 mg), Sirolimus (0.5/1/2 mg), Everolimus (0.25/0.5/0.75/1 mg).
+          All predicted doses are snapped to valid multiples for dispensing realism.
+        </p>
+
+        <h6>Confidence & target trough band</h6>
+        <ul class="mb-3">
+          <li><strong>Prediction Confidence:</strong> mock score 0.65–0.90 — increases when weight + all three genotypes are available, and for tacrolimus (most evidence).</li>
+          <li><strong>Target Trough:</strong> tac 5–12 ng/mL; cyclosporine C0 100–200; sirolimus 5–15; everolimus 3–8. Shown as a light band on the trend chart.</li>
+        </ul>
+
+        <h6>Safety & limitations</h6>
+        <ul>
+          <li>This is a <em>non-clinical prototype</em> for presentation only. Do not use for patient care.</li>
+          <li>Final dosing must be guided by therapeutic drug monitoring (TDM), clinical status, and clinician judgment.</li>
+        </ul>
+
+        <hr>
+        <h6>Swapping in the real model later</h6>
+        <ol class="mb-0">
+          <li>Create an endpoint (e.g., <code>POST /api/predict-dose</code>) that accepts <code>{ patientId, drug, weight, genotypes, labs[] }</code>.</li>
+          <li>Return <code>{ predictedDoseMgPerDay, targetRange, confidence, rationale }</code>.</li>
+          <li>Replace the prototype values on the Dosage & Trends page with your API response and keep the same UI components.</li>
+        </ol>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+  
+  <script>
+    const PTS = "assets/data/Patients_100_withNRIC.csv";
+  const LAB = "assets/data/Labs_20_patients_Updated.csv";
+  let drugPie, genderBar, inRangeBar;
+  let _patients=[], _labs=[], _latestById={};
+
+  async function init() {
+    [_patients, _labs] = await Promise.all([TX.loadCSV(PTS), TX.loadCSV(LAB)]);
+    buildLatest();
+    hydrateFilters();
+    renderAll();
+  }
+
+  function buildLatest() {
+    _latestById = {};
+    _labs.forEach(r => {
+      const id = r["Patient ID"];
+      const dt = TX.parseDMY(String(r["Blood Test Date (dd/mm/yyyy)"] || r["Blood Test Date"]));
+      if (!id || !dt) return;
+      if (!_latestById[id] || dt > _latestById[id].date) {
+        _latestById[id] = { date: dt, row: r };
+      }
+    });
+  }
+
+  function hydrateFilters() {
+    // unique lists
+    const drugs = [...new Set(_patients.map(r => r["Immunosuppressant Used"]).filter(Boolean))];
+    const a5 = [...new Set(_patients.map(r => r["Genotypes (CYP3A5)"]).filter(Boolean))];
+    const a4 = [...new Set(_patients.map(r => r["Genotypes (CYP3A4)"]).filter(Boolean))];
+    const ab = [...new Set(_patients.map(r => r["Genotypes (ABCB1 3435C>T)"]).filter(Boolean))];
+    const fill = (id, arr) => arr.sort().forEach(x => $(`#${id}`).append(`<option>${x}</option>`));
+    fill("fDrug", drugs); fill("f3A5", a5); fill("f3A4", a4); fill("fABCB1", ab);
+
+    $("#btnApply").on("click", renderAll);
+  }
+
+  function applyFilters(rows) {
+    const fDrug = $("#fDrug").val();
+    const f3A5  = $("#f3A5").val();
+    const f3A4  = $("#f3A4").val();
+    const fAB   = $("#fABCB1").val();
+    const fAge  = $("#fAge").val();
+    const fFrom = TX.parseDMY($("#fFrom").val());
+    const fTo   = TX.parseDMY($("#fTo").val());
+
+    return rows.filter(r => {
+      if (fDrug && r["Immunosuppressant Used"] !== fDrug) return false;
+      if (f3A5 && r["Genotypes (CYP3A5)"] !== f3A5) return false;
+      if (f3A4 && r["Genotypes (CYP3A4)"] !== f3A4) return false;
+      if (fAB  && r["Genotypes (ABCB1 3435C>T)"] !== fAB) return false;
+      if (fFrom || fTo) {
+        const d = TX.parseDMY(r["Date of Transplant Surgery (DOTS)"]);
+        if (fFrom && (!d || d < fFrom)) return false;
+        if (fTo && (!d || d > fTo)) return false;
+      }
+      if (fAge) {
+        const age = TX.ageFromDOB(r["DOB (dd/mm/yyyy)"]);
+        const ok = TX.inAgeGroup(age, fAge);
+        if (!ok) return false;
+      }
+      return true;
+    });
+  }
+
+  function renderAll() {
+    const patients = applyFilters(_patients);
+
+    // KPIs
+    $("#kpiTotal").text(patients.length);
+    const trackedIds = new Set(Object.keys(_latestById));
+    $("#kpiTracked").text(trackedIds.size);
+    const tacCount = patients.filter(r => String(r["Immunosuppressant Used"]||"").toLowerCase().includes("tacrol")).length;
+    $("#kpiTac").text(tacCount);
+
+    // % in range (latest C0 vs per-row target)
+    let inRange=0, total=0;
+    const outliers = [];
+    patients.forEach(p => {
+      const id = p["Patient ID"];
+      const latest = _latestById[id]?.row;
+      if (!latest) return;
+      total++;
+      const ok = TX.inTargetForRow(latest);
+      if (ok === true) inRange++;
+      if (ok === false) {
+        outliers.push({
+          id,
+          name: p["Full Patient Name"],
+          date: _latestById[id].date,
+          c0: latest["Drug Trough C0 (ng/mL)"],
+          dose: latest["Estimated Dose (mg/day)"]
+        });
+      }
+    });
+    const pct = total? Math.round((inRange/total)*100): 0;
+    $("#kpiOut").text(outliers.length);
+
+    renderAlerts(outliers);
+    renderDrugPie(patients);
+    renderGenderBar(patients);
+    renderInRangeByDrug(patients);
+  }
+
+  function renderAlerts(outliers) {
+    const $b = $("#alertBody");
+    $b.empty();
+    outliers.sort((a,b)=> b.c0 - a.c0).forEach(o => {
+      const link = TX.dosageLink(o.id);
+      $b.append(`
+        <tr>
+          <td>${o.name} <span class="muted">(${o.id})</span></td>
+          <td>${TX.fmtDMY(o.date)}</td>
+          <td><span class="badge text-bg-danger">${o.c0 ?? "-"}</span></td>
+          <td>${o.dose ?? "-"}</td>
+          <td><a class="btn btn-sm btn-outline-primary" href="${link}">Open Trends</a></td>
+        </tr>`);
+    });
+    if (!outliers.length) $b.append(`<tr><td colspan="5" class="muted">No patients flagged.</td></tr>`);
+  }
+
+  function renderDrugPie(patients) {
+    const counts = {};
+    patients.forEach(r => {
+      const key = (r["Immunosuppressant Used"] || "Unknown").trim();
+      counts[key] = (counts[key] || 0) + 1;
+    });
+    const labels = Object.keys(counts), data = Object.values(counts);
+    const ctx = document.getElementById('drugPie').getContext('2d');
+    if (drugPie) drugPie.destroy();
+    drugPie = new Chart(ctx, { type:'pie', data:{ labels, datasets:[{ data }] } });
+  }
+
+  function renderGenderBar(patients) {
+    const g = {};
+    patients.forEach(r => { const k = (r["Gender"] || "Other").trim(); g[k]=(g[k]||0)+1; });
+    const labels = Object.keys(g), data = Object.values(g);
+    const ctx = document.getElementById('genderBar').getContext('2d');
+    if (genderBar) genderBar.destroy();
+    genderBar = new Chart(ctx, { type:'bar', data:{ labels, datasets:[{ label:'Patients', data }] }, options:{ scales:{ y:{ beginAtZero:true }}}});
+  }
+
+  function renderInRangeByDrug(patients) {
+    // mount a new canvas if not present
+    if (!document.getElementById('inRangeByDrug')) {
+      const host = document.createElement('div');
+      host.className="kpi mt-3";
+      host.innerHTML = `<h2 class="h6">In-Range (Latest C0) by Drug</h2><canvas id="inRangeByDrug" height="200"></canvas>`;
+      document.querySelector('.page-wrap .row.g-3').appendChild(host);
+    }
+
+    const tally = {};
+    patients.forEach(p => {
+      const drug = (p["Immunosuppressant Used"] || "Unknown").trim();
+      tally[drug] = tally[drug] || { ok:0, total:0 };
+      const latest = _latestById[p["Patient ID"]]?.row;
+      if (!latest) return;
+      const ok = TX.inTargetForRow(latest);
+      if (ok !== null) {
+        tally[drug].total++;
+        if (ok) tally[drug].ok++;
+      }
+    });
+
+    const labels = Object.keys(tally);
+    const pct = labels.map(k => tally[k].total ? Math.round((tally[k].ok/tally[k].total)*100) : 0);
+
+    const ctx = document.getElementById('inRangeByDrug').getContext('2d');
+    if (inRangeBar) inRangeBar.destroy();
+    inRangeBar = new Chart(ctx, { type:'bar', data:{ labels, datasets:[{ label:'% In Range', data:pct }] }, options:{ indexAxis:'y', scales:{ x:{ beginAtZero:true, max:100 }}}});
+  }
+
+  init();
+  </script>
+
+
+</body>
+</html>
